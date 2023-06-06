@@ -613,6 +613,27 @@ jobs:
               }
             ]
 
+  load-tests-playwright-ui:
+    needs: [provision]
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: load-tests-playwright-ui
+      cancel-in-progress: true
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.SERVICEPRINCIPAL }}
+      - name: load test (via Playwright)
+        uses: Azure/load-testing@v1.1.13
+        with:
+          # Path of the YAML file. Should be fully qualified path or relative to the default working directory
+          loadtestConfigFile: ./loadtests/contoso-traders-playwright.yaml
+          loadtestResource: ${{ env.LOAD_TEST_SERVICE_NAME }}${{ vars.SUFFIX }}
+          resourceGroup: ${{ env.RESOURCE_GROUP_NAME }}${{ vars.SUFFIX }}
+          
   playwright-tests-ui:
     needs: [provision]
     timeout-minutes: 20

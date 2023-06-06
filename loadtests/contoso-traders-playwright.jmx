@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <com.microsoft.playwright.jmeter.threadgroup.PlaywrightBrowserThreadGroup guiclass="com.microsoft.playwright.jmeter.threadgroup.PlaywrightBrowserThreadGroupGUI" testclass="com.microsoft.playwright.jmeter.threadgroup.PlaywrightBrowserThreadGroup" testname="Playwright Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">30</stringProp>
+        <stringProp name="Playwright.browser">Chromium</stringProp>
+      </com.microsoft.playwright.jmeter.threadgroup.PlaywrightBrowserThreadGroup>
+      <hashTree>
+        <com.microsoft.playwright.jmeter.samplers.PlaywrightSampler guiclass="com.microsoft.playwright.jmeter.samplers.PlaywrightSamplerGUI" testclass="com.microsoft.playwright.jmeter.samplers.PlaywrightSampler" testname="Playwright Sampler" enabled="true">
+          <stringProp name="Playwright.URL">https://staging.contosotraders.com</stringProp>
+          <intProp name="Playwright.timeout">5000</intProp>
+          <stringProp name="Playwright.waitUntilState">LOAD</stringProp>
+        </com.microsoft.playwright.jmeter.samplers.PlaywrightSampler>
+        <hashTree>
+          <com.microsoft.playwright.jmeter.processors.PlaywrightClickPostProcessor guiclass="com.microsoft.playwright.jmeter.processors.PlaywrightClickPostProcessorGUI" testclass="com.microsoft.playwright.jmeter.processors.PlaywrightClickPostProcessor" testname="Playwright Click Processor" enabled="true">
+            <stringProp name="Playwright.selector">Buy Now</stringProp>
+            <stringProp name="Playwright.selectorType">Text</stringProp>
+          </com.microsoft.playwright.jmeter.processors.PlaywrightClickPostProcessor>
+          <hashTree/>
+          <com.microsoft.playwright.jmeter.assertions.PlaywrightAssertion guiclass="com.microsoft.playwright.jmeter.assertions.PlaywrightAssertionGUI" testclass="com.microsoft.playwright.jmeter.assertions.PlaywrightAssertion" testname="Playwright Assertion" enabled="true">
+            <stringProp name="Playwright.selector">Xbox Wireless Controller Lunar Shift Special Edition</stringProp>
+            <stringProp name="Playwright.selectorType">Text</stringProp>
+            <stringProp name="Playwright.assertionType">IsVisible</stringProp>
+            <boolProp name="Playwright.screenshotFailures">false</boolProp>
+          </com.microsoft.playwright.jmeter.assertions.PlaywrightAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
