@@ -1,5 +1,5 @@
-testName: contoso-traders-carts
-testPlan: contoso-traders-carts.jmx
+testName: contoso-traders-playwright
+testPlan: contoso-traders-playwright.jmx
 description:
 engineInstances: 1
 failureCriteria:
