@@ -1,7 +1,9 @@
-testName: contoso-traders-playwright
-testPlan: contoso-traders-playwright.jmx
+testName: contoso-traders-carts
+testPlan: contoso-traders-carts.jmx
 description:
 engineInstances: 1
 failureCriteria:
   - avg(response_time_ms) > 5000
   - percentage(error) > 20
+configurationFiles:
+- jmeter-playwright-0.1.0.jar 
